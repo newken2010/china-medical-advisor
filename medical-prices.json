@@ -1,0 +1,429 @@
+{
+  "meta": {
+    "source": "gpuVRAM 数据摊 · china-medical-advisor（首份快照）",
+    "generated": "2026-11-16",
+    "fx": {
+      "usd_cny": 6.67276,
+      "fx_date": "2026-11-15",
+      "fx_source": "xe.com（USD/CNY 当日收盘）"
+    },
+    "note": "口径纪律：us 数字多为 Medicare 支付口径或医院 self-pay 现金价（两种口径都标清）；cn 数字区分「耗材集采价（官方）」与「全程费用（含手术/住院，媒体/医院口径）」。跨口径对比必须在回答里说明，禁止拿中国耗材价直接对美国全程价。所有记录带来源/日期/URL；grade A=官方源 B=权威媒体或多源一致 C=单源待复核。本文件为构建期快照，勿手改（改 data 源再跑 build-medical.mjs）。",
+    "compliance": "只做价格与流程信息。不诊断、不推荐医院排名、不承诺疗效、不接单不导流。医疗建议红线见 SKILL.md。",
+    "retrieval_audit_2026_11_16": "2026-11-16 竞品调研后补数据轮（按竞品差距清单优先级）：① 白内障/ICL 新术式入库（cataract 3 条 + icl_refractive 1 条）。核源逐条直连：A 级=新华网 2025-01-07 人民日报一线调研（晶体集采平均降价 60%、单焦点 2,500→800、三焦点 2.3 万→8,900 余，原文全文核过）；C 级=搜狐 2024 患者案例（总费 7,300 余/自付 1,600 余，原文核过，单源待复核）+ 百度咕咕 ICL 双眼 2.5 万–4.4 万（原文核过，方向经 8682.cc 南方医院价格表 2.4–4 万交叉，仍 C 级）；B 级=InsureOmni 2026-08-26（美国 self-pay $3,500–7,000/眼均值 $5,000、Medicare 2026 免赔 $283 + coinsurance $340–475、高端 IOL 升级 +$2,000–4,000 不覆盖，原文核过，底层 DLV Vision/AllAboutVision/CoveredUSA/CMS PFS 为转述口径，note 已注明）。② 整台 PCI 全程价补查失败留痕：知乎拆解文 403、cnwszl 期刊 PDF octet-stream 不可达、nhsa.gov.cn 本机仍被拦截 → 维持缺口不编数。③ 癌症新术式入库（G2 需求之王，2 条均 A 级）：美国侧=NCI Cancer Trends Progress Report（NIH 官方，2025-04 更新，原文全文核过：人均年化医疗服务成本、2007-2013 Medicare 索赔、2020 美元、按癌种×阶段分列，首年阶段 $28,109–139,814 含前列腺–脑，全癌种均值 $43,516）；中国侧=国家医保局 2025-09-28 公众号（经中新网转载，原文核过：6 例浙江三甲真实案例，单程总额 39,277.84–133,235.3 元，整体报销 51.97%–89.05%）。口径纪律：美=年化均值总额、中=单程总额+报销比例，两侧不齐，caliber_note 已写死禁止直接相除。英国/日本/印度侧癌症全程价仍缺口（未核到直连原文）。",
+    "retrieval_audit_2026_11_16_2": "2026-11-16 第二轮缺口补数据（站长指令「该补数据补数据」，按审计建议 2 优先级：LASIK + 体检）：① 新术式 lasik（2 条）：美=American Refractive Surgery Council 2025-04-10 + All About Vision 2026-05-12 更新（两源均直连核过原文：均价 $2,000–3,000/眼、2026 均值 $2,246/眼，self-pay 择期自费），B 级双源一致；中=飞象网 2025-10-27 经新浪财经全文核过（半飞秒 9,000–15,000 / 全飞秒 1.5万–3万 / ICL 2.5万–4万 / Smart 全激光 8,000–14,000，均双眼），C 级单源待复核（未核到医院官方公示价，方向与既往 ICL C 级一致）。caliber_note 写死：美=单眼 USD、中=双眼 CNY，换算到同侧再比。② 新术式 health_checkup（2 条均美侧 B 级）：普通全面体检=Sidecar Health 分州现金价经 iCare 2026-03-20 直连核过（均值 $407、分州 $353–502，底层理赔 2017–2019 已披露）；高端 executive=Plotline 2026-04-06 直连核过（$2,000–6,000、顶级 $5,000–25,000+，转述 Fountain Life）。③ 体检中国侧仍缺口：公立医院/民营连锁/国际部均无可靠官方或医院公示价，行业分析文客单价（瑞慈 532.6 元等）不作价格依据，不编。④ 体检/ICL 美国侧缺口维持（未核到直连原文）。",
+    "retrieval_audit": "2026-11-15 人工验证轮：4 个核心数字源逐条直连核原文——① 种植结构价（nhsa.gov.cn 2024-01-12 公告，原文核对）② 支架集采（nhsa.gov.cn 2024-03-11 公告本机访问受限 ERR_TUNNEL_CONNECTION_FAILED，改以新华社 2020-11-07 原文交叉验证：均价 1.3 万→700 元、降幅 93%、10 个中选产品报价 469–798 元，数字一致）③ 关节接续采购（ybj.sh.gov.cn 沪医保价采发〔2024〕21 号，原文核对：髋 7,987 元/套、膝 5,434 元/套）④ 美国关节 self-pay（selfpayrates.com，原文核对，数据更新至 578 家医院，已按新值刷新）⑤ IVF 中国侧（好大夫在线词条页，原文核对：上海 2024-06-01 起 12 项入医保、一代二代约 4 万/三代约 6 万；北京 2023-07-01 起 16 项入医保；广东 2024-01-01 起 8 项入医保）⑥ IVF 美国侧（fertlo.com 原文核对：全国均值 $11,675 不含药、州间 $9,800–16,000、药 $3,000–6,000，底层 SART/RESOLVE/FertilityIQ 2024–2025）。验证结论：6 源 0 数字冲突；1 处数据刷新（selfpayrates 545→578 家医院）。"
+  },
+  "procedures": [
+    {
+      "id": "ivf",
+      "zh": "试管婴儿（辅助生殖，按周期）",
+      "en": "IVF (in vitro fertilization, per cycle)",
+      "caliber_note": "美：单次取卵周期，是否含促排卵药各源不同，逐条标清。中：按代次（一代常规 IVF / 二代 ICSI / 三代 PGT），费用随代次递增；上海已将 12 个辅助生殖项目纳入医保（2024-06 起，仅医保参保人适用，自费/外籍不报销）。",
+      "records": [
+        {
+          "side": "us",
+          "label": "单周期（不含促排卵药），全国均值",
+          "min": 11675,
+          "max": null,
+          "unit": "USD",
+          "kind": "national_average_excl_meds",
+          "grade": "B",
+          "source_title": "IVF Cost by State 2026 — Cheapest & Most Expensive States（引述 SART 2024 全国报告）",
+          "source_url": "https://fertlo.com/ivf-cost-by-state",
+          "source_author": "fertlo.com（聚合站，底层为 SART 全国数据）",
+          "published": "2026",
+          "retrieved": "2026-11-15",
+          "note": "原文核过（2026-11-15）：全国均值 $11,675/周期（不含药），州间 $9,800（密西西比）–$16,000（纽约）；促排药另加 $3,000–6,000。底层：SART Clinic Summary Reports / RESOLVE 全国成本调查 / FertilityIQ（2024–2025），页面明示。另一参考：drjameslinmd 2025 年表（单周期 $12,000–18,000）2026-11-15 访问超时，未验证，仅作参考不作数字依据。"
+        },
+        {
+          "side": "us",
+          "label": "单周期含药（all-in）区间",
+          "min": 15000,
+          "max": 25000,
+          "unit": "USD",
+          "kind": "all_in_range",
+          "grade": "C",
+          "source_title": "Average IVF Cost in the U.S.: $15k–$25k All-In（Chad Cluff，2026-09-28 复核）",
+          "source_url": "https://infertiletruth.com/cost-calculator/national-average",
+          "source_author": "infertiletruth.com（数据编辑 Chad Cluff；底层 SART/CDC/RESOLVE 2026-05 核验）",
+          "published": "2026-09-28",
+          "retrieved": "2026-11-15",
+          "note": "原文核过（2026-11-15）：all-in $15,000–25,000 = 基础临床 $12,000–18,000 + 促排药 $3,500–7,000；附加项 ICSI $1,500–2,500、PGT-A $3,000–5,000、麻醉 $500–1,000、冻胚年存 $500–1,200；共担退费套餐常见 $25,000–35,000 一口价。与上条「不含药均值 $11,675」并存不合并。"
+        },
+        {
+          "side": "cn",
+          "label": "一代/二代单周期（上海公立医院，医保参保口径）",
+          "min": 30000,
+          "max": 60000,
+          "unit": "CNY",
+          "kind": "public_hospital_range",
+          "grade": "B",
+          "source_title": "试管婴儿费用（上海医保局测算：一代二代总费用约 4 万，三代约 6 万，2024-06 起 12 个项目纳入医保）",
+          "source_url": "https://www.haodf.com/citiao/zhiliao-shiguanyinger/jieshao/wenzhang-3006.html",
+          "source_author": "好大夫在线（引述上海市医保局测算）",
+          "published": "2024",
+          "retrieved": "2026-11-15",
+          "note": "原文核过（2026-11-15，好大夫在线词条页）：上海 2024-06-01 起 12 个辅助生殖项目入医保，测算一代二代总费用约 4 万、三代约 6 万，报销后省至少 60%（人均约 9,000 元）；北京 2023-07-01 起 16 项入医保（一代每周期报销约 6,000–12,000 元）；广东 2024-01-01 起 8 项入医保（取卵+培养+移植原 1 万多，报销后自付约 3,000）。同页医生口径：国家批准生殖中心一代一次约 3–5 万（检查 5,000–8,000 + 促排约 1 万 + 取卵养胚移植约 1 万）；三代 PGT 检测费约 3,600–4,000 元/胚胎（江苏妇幼、杭州妇幼医生口径）。医保报销仅对参保人；自费与外籍按全价，入医保城市名单在扩（时效项，实时核）。"
+        },
+        {
+          "side": "cn",
+          "label": "单周期（全国，含检查-促排-取卵-移植主流报价）",
+          "min": 30000,
+          "max": 50000,
+          "unit": "CNY",
+          "kind": "reported_range",
+          "grade": "B",
+          "source_title": "“不想放弃！”困在生育里的人为试管做了保险｜辅助生育保险能否救急",
+          "source_url": "https://m.jiemian.com/article/7935028.html",
+          "source_author": "界面新闻",
+          "published": "2024",
+          "retrieved": "2026-11-15",
+          "note": "「每周期近 5 万元」为主流口径；与上海医保口径并存。"
+        },
+        {
+          "side": "cn",
+          "label": "三代（含 PGT 筛查）单周期",
+          "min": 60000,
+          "max": 150000,
+          "unit": "CNY",
+          "kind": "reported_range",
+          "grade": "C",
+          "source_title": "2025 国家卫健委辅助生殖技术指导价及 98 家 PGT 资质医院数据（转述）",
+          "source_url": "https://zhuanlan.zhihu.com/p/1959322510907643232",
+          "source_author": "知乎专栏（单源，待复核：所称「卫健委指导价」未找到官方文件原文）",
+          "published": "2025",
+          "retrieved": "2026-11-15",
+          "note": "单源待复核。方向性参考：上海医保口径三代约 6 万（参保报销后），自费三代普遍高于二代 2–4 万。"
+        }
+      ]
+    },
+    {
+      "id": "dental_implant",
+      "zh": "种植牙（单颗常规种植）",
+      "en": "Dental implant (single, routine)",
+      "caliber_note": "中国有全国统一的官方价格结构（2023-05 起）：医疗服务包干 + 种植体集采 + 牙冠竞价，三部分相加即单颗总费用，口径最干净。美国无统一价，为医院自定现金价。",
+      "records": [
+        {
+          "side": "us",
+          "label": "单颗（种植体+基台+冠，常见口径）",
+          "min": 3100,
+          "max": 5800,
+          "unit": "USD",
+          "kind": "reported_range",
+          "grade": "B",
+          "source_title": "How Much Are Dental Implants? 2026 Cost Per Tooth Guide（引 AAID 美国种植体牙科学会）",
+          "source_url": "https://harudental.com/how-much-are-dental-implants/",
+          "source_author": "harudental.com（引述 American Academy of Implant Dentistry）",
+          "published": "2026",
+          "retrieved": "2026-11-15",
+          "note": "另一口径：realdentalcosts.com 2026 全美均值 $4,507/颗（州间 $3,760–5,733，https://realdentalcosts.com/en/）。"
+        },
+        {
+          "side": "cn",
+          "label": "单颗总费用 = 医疗服务包干 + 种植体 + 牙冠（官方结构价）",
+          "min": 5548,
+          "max": 6905,
+          "unit": "CNY",
+          "kind": "official_price_structure",
+          "grade": "A",
+          "source_title": "国家医保局：关于发布“承诺参与口腔种植价格治理医疗机构名单”等信息的公告",
+          "source_url": "https://www.nhsa.gov.cn/art/2024/1/12/art_109_11954.html",
+          "source_author": "国家医疗保障局（官网原文）",
+          "published": "2024-01-12",
+          "retrieved": "2026-11-15",
+          "note": "官方结构：三级公立医院单颗常规种植医疗服务包干原则上 ≤4,500 元（含诊查/检验影像/植入/牙冠置入/扫描设计，不含拔牙牙周根管植骨）；种植体系统集采中选 548–1,855 元（均价 900 余）；牙冠竞价挂网 100–656 元（均价 300 余）。本条 min/max = 三部分分别取低/高。2026-09-29 种植体接续采购（集采 2.0）已启动（https://finance.sina.com.cn/jjxw/2026-09-29/doc-initmuyr3175070.shtml）。"
+        }
+      ]
+    },
+    {
+      "id": "coronary_stent",
+      "zh": "冠脉支架（经皮冠脉介入，PCI）",
+      "en": "Coronary stent (PCI procedure)",
+      "caliber_note": "口径警示（回答时必须说明）：中国数字是「支架耗材集采价」（仅器械），美国数字多为「Medicare 对整台手术的平均支付」（含手术/住院/药），两者不是同一口径；同口径的「中国整台 PCI 费用」本快照未收录，标注为缺口。",
+      "records": [
+        {
+          "side": "us",
+          "label": "单次支架手术，Medicare 平均支付",
+          "min": 10615,
+          "max": null,
+          "unit": "USD",
+          "kind": "medicare_allowed",
+          "grade": "B",
+          "source_title": "Taxpayers Spent Over $800 Million For Unnecessary Coronary Stents A Year, Report Finds",
+          "source_url": "https://forbes.com/sites/ariannajohnson/2023/10/31/taxpayers-spent-over-800-million-for-unnecessary-coronary-stents-a-year-report-finds/",
+          "source_author": "Forbes（引述学术研究）",
+          "published": "2023-10-31",
+          "retrieved": "2026-11-15",
+          "note": "文中：整台手术 Medicare 平均支付 $10,615，患者自付约 $1,600。DRG 322（无并发症冠脉支架）另一口径：医院账单中位 $101,746、总支付中位 $16,228、Medicare 支付 $12,107（https://ushospitalprices.com/procedures/coronary-stent-without-major-complications-drg-322，自动采集 C 级）。"
+        },
+        {
+          "side": "cn",
+          "label": "支架耗材集采价（仅器械，非整台手术）",
+          "min": 700,
+          "max": 800,
+          "unit": "CNY",
+          "kind": "official_procurement",
+          "grade": "A",
+          "source_title": "国家医保局：冠脉支架集中带量采购中选产品降至 700–800 元左右",
+          "source_url": "https://nhsa.gov.cn/art/2024/3/11/art_52_12182.html",
+          "source_author": "国家医疗保障局（官网）",
+          "published": "2024-03-11",
+          "retrieved": "2026-11-15",
+          "note": "交叉验证过（2026-11-15）：nhsa.gov.cn 官网公告本机访问受限，改以新华社 2020-11-07 原文验证（xinhuanet.com/politics/2020-11/07/c_1126710481.htm）——均价从 1.3 万降至 700 元、平均降幅 93%、10 个中选产品报价 469–798 元（最高 798 最低 469），与 nhsa 2024-03-11 公告口径一致。2020 年集采前进口支架近 2 万元。整台 PCI（手术+住院）费用本快照为缺口，待补。2026-11-16 补查尝试：知乎全程价拆解文 403、期刊 PDF（cnwszl 2025）octet-stream 不可达，均未核到原文 → 整台 PCI 仍为缺口，不编。"
+        }
+      ]
+    },
+    {
+      "id": "joint_replacement",
+      "zh": "髋/膝关节置换",
+      "en": "Total hip / knee replacement",
+      "caliber_note": "中国：耗材（关节假体）有全国集采官方价，全程费用（含手术住院）为医院/媒体口径。美国：self-pay 现金价（无保险自付口径）为可对比口径，Medicare 支付口径另计。",
+      "records": [
+        {
+          "side": "us",
+          "label": "全膝关节置换，self-pay 现金价中位（578 家美国医院，2026-11-15 采集）",
+          "min": 15226,
+          "max": null,
+          "unit": "USD",
+          "kind": "self_pay_median",
+          "grade": "B",
+          "source_title": "Joint replacement cost without insurance: Knee replacement median $15,226 at 578 hospitals",
+          "source_url": "https://selfpayrates.com/cost/joint-replacement",
+          "source_author": "selfpayrates.com（基于 45 CFR 180.50 联邦强制医院价格透明文件）",
+          "published": "2026-11-15",
+          "retrieved": "2026-11-15",
+          "note": "原文核过（2026-11-15 采集）：中位 $15,226.08，中间 80% 区间 $3,155.40–39,065.95；州中位从阿肯色 $5,662.91 到俄亥俄 $42,720.47。全髋 544 家中位 $14,577.62、全肩 508 家 $17,113.00。医院价通常只含 facility fee，外科医生/麻醉/随访/假体另计（问清 bundled 价）。Medicare 2026 全国基准费率另列（中位约 3 倍于该费率）。"
+        },
+        {
+          "side": "cn",
+          "label": "关节假体耗材集采价（仅假体，非全程）",
+          "min": 5000,
+          "max": 7000,
+          "unit": "CNY",
+          "kind": "official_procurement",
+          "grade": "A",
+          "source_title": "从“万元档”降至“千元档” 人工关节集采落地（髋 3.5 万→约 7,000 元，膝 3.2 万→约 5,000 元，平均降幅 82%）",
+          "source_url": "https://hlj.gov.cn/hlj/c108561/202206/c00_31199826.shtml",
+          "source_author": "黑龙江省人民政府网（国家集采落地执行公告转载）",
+          "published": "2022-06",
+          "retrieved": "2026-11-15",
+          "note": "2021-09 开标、2022 起全国落地。2024-10 接续采购支付标准：髋关节每套 7,987 元、膝关节每套 5,434 元（上海市医保局 沪医保价采发〔2024〕21 号，原文核过 2026-11-15：https://ybj.sh.gov.cn/qtwj/20241008/4f80d874344849ef8bc41fe2aac87235.html，A 级；零差率销售、中选价即医保支付标准）。"
+        },
+        {
+          "side": "cn",
+          "label": "全程费用（假体+手术+住院，常规单侧）",
+          "min": 15000,
+          "max": 25000,
+          "unit": "CNY",
+          "kind": "reported_total",
+          "grade": "C",
+          "source_title": "换人工膝关节、髋关节，集采后现在个人自付到底要花多少钱",
+          "source_url": "https://www.sohu.com/a/1082056791_122904953",
+          "source_author": "搜狐号（单源，待复核）",
+          "published": "2025",
+          "retrieved": "2026-11-15",
+          "note": "「集采后常规全髋/全膝单侧总费用约 1.5 万–2.5 万元」。另有好大夫在线：集采后总花费由 4–9 万降至 3 万上下（https://www.haodf.com/neirong/wenzhang/9394097273.html）。两条 C 级并存不合并。"
+        }
+      ]
+    },
+    {
+      "id": "cataract",
+      "zh": "白内障手术（含人工晶体植入）",
+      "en": "Cataract surgery (with IOL implant)",
+      "caliber_note": "中：人工晶体（IOL）有官方集采价（仅耗材）；全程手术费 = 晶体 + 手术 + 住院，公立医院报道口径（国际部/民营更贵，未收录）。美：self-pay 现金价按单眼、含标准单焦点 IOL；高端多焦/散光晶体为 +$2,000–4,000/眼升级（Medicare 不覆盖），两口径分列。",
+      "records": [
+        {
+          "side": "cn",
+          "label": "人工晶体（IOL）集采价（仅耗材，非手术全程，2024 全国落地）",
+          "min": 800,
+          "max": 8900,
+          "unit": "CNY",
+          "kind": "official_procurement",
+          "grade": "A",
+          "source_title": "如何确保人工晶体“降价不降质”（一线调研）：第四批国家高值耗材集采晶体类平均降价 60%，2024 年在全国落地执行",
+          "source_url": "http://xinhuanet.com/tech/20250107/8a978dae002144639d6fcd3e62745948/c.html",
+          "source_author": "新华网（人民日报报道，记者 杨迅/李蕊/宋朝军/窦皓）",
+          "published": "2025-01-07",
+          "retrieved": "2026-11-16",
+          "note": "原文核过（2026-11-16）：2023-11-30 第四批国家集采开标，人工晶体类中选产品平均降价 60%。非散光单焦点为主流：爱博诺德非散光单焦点 2,500 元/个 → 近 800 元/个；强生新一代单焦点 1 万元/个 → 1,100 余元/个；爱尔康景深延长（EDOF）1.1 万元/个 → 3,500 余元/个；三焦点（非散光）2.3 万元/个 → 8,900 余元/个。医院侧：湘雅医院植入晶体 997 元（集采前约 3,000 元）；兰州一院 2024 年以来 6,700 余例植入全部选中选产品。nhsa.gov.cn 2026-09-29《白内障手术费降至千元》另报「同款晶体近 4,000 元 → 900 元左右」（本机未核到原文，仅检索摘要，不作数字依据）。"
+        },
+        {
+          "side": "cn",
+          "label": "全程手术费，单眼（晶体+手术+住院，集采后单焦点晶体案例）",
+          "min": 7300,
+          "max": null,
+          "unit": "CNY",
+          "kind": "reported_total",
+          "grade": "C",
+          "source_title": "人工晶体集采政策落地，白内障手术费万元变千元（患者案例：山东青岛眼科医院）",
+          "source_url": "https://www.sohu.com/a/788369954_439958",
+          "source_author": "搜狐号（单源，待复核）",
+          "published": "2024",
+          "retrieved": "2026-11-16",
+          "note": "原文核过（2026-11-16）：右眼白内障植入单焦点人工晶体，总费用 7,300 余元，医保报销后自付 1,600 余元。另一口径（人民日报健康 2024-06-25）：集采后两焦点晶体约 2,500 元（降约 50%）、单焦点 800–1,000 元、三焦点约 10,000 元（https://paper.people.com.cn/jksb/html/2024-06/25/content_26065638.htm）。国际部/民营医院价格未收录（缺口）。"
+        },
+        {
+          "side": "us",
+          "label": "self-pay 现金价，单眼（含标准单焦点 IOL）",
+          "min": 3500,
+          "max": 7000,
+          "unit": "USD",
+          "kind": "self_pay_range",
+          "grade": "B",
+          "source_title": "Cataract Surgery Cost 2026: What You'll Really Pay（InsureOmni，2026-08-26）",
+          "source_url": "https://insureomni.com/cataract-surgery-cost",
+          "source_author": "InsureOmni（底层转述 DLV Vision / AllAboutVision / CoveredUSA / Free Market Healthcare / CMS Physician Fee Schedule 2026）",
+          "published": "2026-08-26",
+          "retrieved": "2026-11-16",
+          "note": "原文核过（2026-11-16）：无保险 $3,500–7,000/眼（全国均值约 $5,000），含手术费+场地+麻醉+标准 IOL；双眼 $7,000–14,000。Original Medicare Part B：2026 免赔额 $283、20% coinsurance 约 $340–475/眼（ASC 场地费约 $1,255.73 + 医生约 $462.94，CMS PFS 经 CoveredUSA）；医院门诊场地费约 $2,370，coinsurance 相应更高。高端 IOL 升级（toric/多焦/EDOF）+$2,000–4,000/眼，Medicare 不覆盖（Northwest Eye 经 InsureOmni）。飞秒激光辅助 $4,500–7,000/眼（DLV Vision 经 InsureOmni）。ASC vs 医院：场地费医院普遍更高（CoveredUSA 经 InsureOmni）。"
+        }
+      ]
+    },
+    {
+      "id": "icl_refractive",
+      "zh": "ICL 屈光晶体植入（高度近视矫正，自费）",
+      "en": "ICL refractive lens implantation (self-pay)",
+      "caliber_note": "ICL 属屈光矫正（择期），中国医保普遍不报销，自费口径。美国侧本快照未收录（缺口）。注意：ICL（屈光）与白内障 IOL（医疗必需）是两回事，不得互相引用。",
+      "records": [
+        {
+          "side": "cn",
+          "label": "ICL 植入，双眼，主流区间（自费，医保不报）",
+          "min": 25000,
+          "max": 44000,
+          "unit": "CNY",
+          "kind": "reported_total",
+          "grade": "C",
+          "source_title": "ICL人工晶体植入价格多少钱？2025费用构成与价格区间",
+          "source_url": "https://kuku.baidu.com/landing/tscp_doc/de68ef7c34ec7c13100cf72124eb19de",
+          "source_author": "百度咕咕内容页（单源，待复核）",
+          "published": "2025",
+          "retrieved": "2026-11-16",
+          "note": "方向交叉（2026-11-16）：8682.cc 2025-06 南方医科大学南方医院眼科价格表列 ICL 2.4 万–4 万/双眼（高度近视 ≤1800 度，https://8682.cc/content/202506/09_248297.shtml），方向一致。两源均为内容聚合页，未核到医院官方公示文件 → C 级单源待复核，不得作官方报价依据。两源一致：ICL 属自费项目、医保不报销。美国侧 ICL 费用未收录（缺口）。"
+        }
+      ]
+    },
+    {
+      "id": "cancer",
+      "zh": "癌症（整病治疗费用，非单术式）",
+      "en": "Cancer (whole-disease treatment cost, not a single procedure)",
+      "caliber_note": "⚠️ 口径与其余术式不同：这里是「整病/多周期」成本，不是单台手术。美 = NCI 官方「每患者人均年化医疗服务成本」（Medicare 索赔口径、2020 美元、2007-2013 索赔、按癌种×治疗阶段分列，是费用总额含医保支付+患者自付，**不是自付额**）。中 = 国家医保局 2025 年真实案例「单次/单程治疗费用总额」（医保报销前），并附报销比例。两侧口径不齐（美=年化均值、中=单程总额），**禁止直接相除**，按癌种+阶段对齐后再比。",
+      "records": [
+        {
+          "side": "us",
+          "label": "美国癌症，每患者人均年化医疗服务成本（首年/初始治疗阶段，按癌种）",
+          "min": 28109,
+          "max": 139814,
+          "unit": "USD",
+          "kind": "gross_cost_per_patient_annualized",
+          "grade": "A",
+          "source_title": "Financial Burden of Cancer Care（Cancer Trends Progress Report，2025-04 更新，底层 Mariotto et al. 2020，2007-2013 Medicare 索赔，2020 美元）",
+          "source_url": "https://progressreport.cancer.gov/after/economic_burden",
+          "source_author": "美国国家癌症研究所 NCI（NIH/DHHS，官方报告，公有领域）",
+          "published": "2025-04",
+          "retrieved": "2026-11-16",
+          "note": "原文核过（2026-11-16）。口径：每患者人均年化「医疗服务」成本（Medicare A+B 索赔，含 Medicare 支付 + 患者自付，**总额非自付**），另口径的口服药成本单列（此处不含）。首年/初始治疗阶段（initial，诊断后第一年）按癌种：前列腺 $28,109 / 乳腺 $34,980 / 结直肠 $66,524 / 肺 $68,293 / 卵巢 $79,120 / 胰腺 $108,166 / 脑 $139,814（全癌种均值 $43,516）。其他阶段（同癌种，供对齐）：初始→维持（continuing）→临终（last year of life），如肺 $68,293/$12,389/$110,248、胰腺 $108,166/$18,427/$125,031、乳腺 $34,980/$3,540/$76,101。全国癌症总医疗成本 2015 年 $1,902 亿。"
+        },
+        {
+          "side": "cn",
+          "label": "中国癌症，真实案例单程治疗费用总额（浙江三甲，6 例 2025，医保报销前）",
+          "min": 39278,
+          "max": 133235,
+          "unit": "CNY",
+          "kind": "reported_case_total",
+          "grade": "A",
+          "source_title": "癌症治疗费用，医保能报销多少？（国家医保局微信公众号 2025-09-28，刘湃，经中新网转载）",
+          "source_url": "https://www.chinanews.com.cn/sh/2025/09-28/10490875.shtml",
+          "source_author": "国家医疗保障局（官方公众号，中新网转载）",
+          "published": "2025-09-28",
+          "retrieved": "2026-11-16",
+          "note": "原文核过（2026-11-16）。6 例真实案例（浙江某三甲，2025 年，均为报销前费用总额）：肝癌手术前后治疗 56,954.5 元（整体报销 69.96%）；乳腺癌化疗 12 次 39,277.84 元（58.58%）；结直肠癌靶向 14 次 114,800.67 元（56.17%）；胃癌免疫 10 次 42,022.99 元（51.97%）；脑恶性肿瘤手术+靶向+化疗 133,235.3 元（整体 66.66%，叠加大病保险+医疗救助后 89.05%）；脑恶性肿瘤放化疗 54,378.25 元（63.34%）。背景：医保目录含 230 余种抗癌药、覆盖 20 余种常见癌；依沃西单抗（国产、2024-05 获批）当年即入医保。口径=参保人单程总额；外籍/自费按全价、无报销比例，回答时须说清。"
+        }
+      ]
+    },
+    {
+      "id": "lasik",
+      "zh": "LASIK 近视激光手术（FS-LASIK 半飞秒 / SMILE 全飞秒，择期自费）",
+      "en": "LASIK / myopia laser correction (FS-LASIK / SMILE, elective self-pay)",
+      "caliber_note": "美：self-pay 现金价按「单眼」（择期手术，医保普遍不报），全国均值/区间。中：主流报价按「双眼」（含术前检查+手术），医保不报（自费），公立另含检查/挂号/术后复查分项。⚠️ 两侧计价单位不同（美=单眼 USD、中=双眼 CNY），对比时必须先换算到同侧（双眼×2 或 单眼÷2）再比，禁止拿单眼 USD 直接对双眼 CNY 相除。",
+      "records": [
+        {
+          "side": "us",
+          "label": "LASIK，self-pay 现金价，单眼（全国）",
+          "min": 2000,
+          "max": 3000,
+          "unit": "USD",
+          "kind": "self_pay_range",
+          "grade": "B",
+          "source_title": "Balancing the Cost of Vision Care（American Refractive Surgery Council，2025-04-10）+ How Much Does LASIK Eye Surgery Cost?（All About Vision，2026-05-12 更新，医学审校 Gary Heiting OD）",
+          "source_url": "https://americanrefractivesurgerycouncil.org/cost-of-vision-the-lasik-decision-from-a-financial-perspective",
+          "source_author": "American Refractive Surgery Council + All About Vision（两源交叉）",
+          "published": "2025-04-10",
+          "retrieved": "2026-11-16",
+          "note": "两源原文均直连核过（2026-11-16）。RSC：LASIK 属择期手术、医保普遍不覆盖，均价 $2,000–3,000/眼（随医生/技术/个体需求浮动）。All About Vision（https://allaboutvision.com/treatments-and-surgery/vision-surgery/lasik/cost-of-lasik）：2026 全美均值约 $2,246/眼，飞秒 bladeless / custom wavefront 或单列另计价，广告 <$1,000/眼多限轻度近视且不含全部费用；2019 调查 29% 医生提供特价（88% 零息分期）。第三参考（转述）：MarketScope 2020 全美均值 $2,632/眼（Clinical Ophthalmology，经 nvisioncenters/beacheyecare 转述，未直连）。B 级=两源方向一致、均值落区间内。"
+        },
+        {
+          "side": "cn",
+          "label": "半飞秒 FS-LASIK / 全飞秒 SMILE，双眼（2025 主流报价，自费）",
+          "min": 9000,
+          "max": 30000,
+          "unit": "CNY",
+          "kind": "reported_range",
+          "grade": "C",
+          "source_title": "近视手术价格深度解析：明明白白你的钱花在了哪里（飞象网 2025-10-27，经新浪财经转载）",
+          "source_url": "https://finance.sina.com.cn/tech/roll/2025-10-27/doc-infvihkr9860076.shtml",
+          "source_author": "飞象网（单源，待复核；深圳普瑞眼科屈光科负责人刘泉教授受访口径）",
+          "published": "2025-10-27",
+          "retrieved": "2026-11-16",
+          "note": "原文全文直连核过（2026-11-16，经 finance.sina.com.cn）。2025 价格（双眼）：全飞秒 SMILE 1.5万–3万元、半飞秒 FS-LASIK 约 9,000–15,000 元、ICL 晶体植入 2.5万–4万元、Smart 全激光 8,000–14,000 元。本条 min/max = 半飞秒低 ~ 全飞秒高。细分：一线城市全飞秒 1.2万–2.6万 / 二线 1.5万–2.2万；三甲 2万–3万 / 民营 1.5万–2.5万；SMILE Pro 新设备 +3,000–5,000；主任医师操刀 +15%–25%。医保不报（自费）。C 级=单源行业分析（未核到某医院官方公示价），方向与既往 ICL C 级记录（8682.cc 南方医院 2.4万–4万、百度咕咕 2.5万–4.4万）一致。"
+        }
+      ]
+    },
+    {
+      "id": "health_checkup",
+      "zh": "体检 / 健康检查套餐（年度全面体检 + 高端 executive 体检）",
+      "en": "Health checkup / annual physical (comprehensive + executive)",
+      "caliber_note": "美：self-pay 现金价按「次/项目」（择期；多数保险覆盖 in-network 预防性 visit，add-on 另计），分普通全面体检与高端 executive 两档。中：未收录可靠官方/医院公示价（公立医院体检中心 / 美年·爱康等民营连锁 / 国际部均未核到直连原文）= 缺口。⚠️ 两侧不可直接相除：美=按次现金价、中=无同口径数据。",
+      "records": [
+        {
+          "side": "us",
+          "label": "全面年度体检（含常规化验 + EKG），self-pay 现金价，全美均值",
+          "min": 353,
+          "max": 502,
+          "unit": "USD",
+          "kind": "self_pay_range",
+          "grade": "B",
+          "source_title": "Annual Physical Exam Cost in the U.S. 2026（iCare Medical Group，2026-03-20，转述 Sidecar Health 分州现金价系列）",
+          "source_url": "https://www.icaremdgroup.com/blogs/annual-physical-exam-cost-in-the-u-s-2026",
+          "source_author": "iCare Medical Group（转述 Sidecar Health 分州现金价；底层理赔 2017–2019 已披露）",
+          "published": "2026-03-20",
+          "retrieved": "2026-11-16",
+          "note": "原文直连核过（2026-11-16）。全美 50 州 + DC：「典型全面 wellness checkup」（含常见化验 + EKG）现金价均值约 $407、中位 $405，分州 $353（Iowa）–$502（Alaska）。底层理赔采集期 2017–2019（发布者披露，非 2026 理赔均值，仅作地理离散参考）。另：Medicare 明确「routine physical exam 不覆盖、100% 自付」，IPPE/AWV 预防性 visit 若接受 assignment 则 $0；紧急护理 general physical 自付可低至 $65–150（carenow.com / mymdnow.com 明码价单）。B 级=两源方向一致（iCare $400 均值 ↔ Sidecar $353–502）。"
+        },
+        {
+          "side": "us",
+          "label": "高端 executive 体检（含基因 / 全身 MRI 等进阶诊断），self-pay",
+          "min": 2000,
+          "max": 6000,
+          "unit": "USD",
+          "kind": "self_pay_range",
+          "grade": "B",
+          "source_title": "Executive Health Program Cost: A Full Breakdown（Plotline Health，2026-04-06，转述 Fountain Life）",
+          "source_url": "https://www.plotline.health/blog/executive-health-program-cost",
+          "source_author": "Plotline Health（转述 Fountain Life；顶级机构 Cleveland Clinic / Mayo Clinic 为转述口径）",
+          "published": "2026-04-06",
+          "retrieved": "2026-11-16",
+          "note": "原文直连核过（2026-11-16）。executive health program 一般 $2,000–6,000，多数全面评估均值 $3,500–6,000，顶级机构（Cleveland Clinic / Mayo Clinic）$5,000–25,000+。保险通常不覆盖（非「医疗必需」），可用 HSA/FSA。B 级=两源方向一致（Plotline ↔ Fountain Life）。注意：这是「高端/executive 档」，比普通全面体检贵约一个量级，对比时须分档，别拿 executive 价当普通体检价。"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "中国整台 PCI（冠脉介入）手术总费用：只有耗材集采价，缺同口径全程价（2026-11-16 补查未成：知乎 403 / 期刊 PDF octet-stream，仍缺口）",
+    "ICL 美国侧费用：未收录",
+    "肿瘤：中美两侧已入（NCI 年化均值 + 国家医保局 6 案例，A 级）；英国/日本/印度侧全程价仍未收录；中国「无医保/外籍自费全程价」= 参保案例×无报销，但国际部加价未收录（缺口）",
+    "体检套餐：美国侧已入（health_checkup 2 条 B 级：普通全面体检 $353–502 + 高端 executive $2,000–6,000，均 self-pay）；中国侧（公立医院体检中心 / 美年·爱康等民营连锁 / 国际部）未核到可靠官方或医院公示价，行业分析文的客单价（如瑞慈 532.6 元）不作价格依据 → 仍缺口，不编",
+    "城市/医院维度：国际部价格普遍高于公立医院定价，未收录",
+    "美国 Medicare 支付 vs self-pay 两个口径并存，未逐术式补齐（白内障已有双口径）",
+    "签证/保险/国际部名录：见 guide/visit-guide.md，政策类标注「未验证」的条目需宿主 agent 联网搜索实时核对"
+  ]
+}
